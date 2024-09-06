@@ -37,8 +37,10 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.web.securityContext | nindent 12 }}
-          image: "{{ .Values.web.image.repository }}:{{ default .Chart.AppVersion .Values.web.image.tag }}"
-          imagePullPolicy: {{ pluck "pullPolicy" .Values.web.image .Values.image | first }}
+          #image: "{{ .Values.web.image.repository }}:{{ default .Chart.AppVersion .Values.web.image.tag }}"
+          image: "harbor.alpatateknoloji.com/root/octapull-custom-jitsi-1:latest"
+          #imagePullPolicy: {{ pluck "pullPolicy" .Values.web.image .Values.image | first }}
+          imagePullPolicy: Always
           envFrom:
           - configMapRef:
               name: {{ include "jitsi-meet.web.fullname" . }}
